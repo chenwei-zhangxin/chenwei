@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cw.cms.dao.UserInfoMapper">
+	<select id="getUser" resultType="User">
+		select username,password,nickname FROM  cms_user WHERE username=#{userName} 
+	</select>
+	
+	<select id="getCountByUname" resultType="_int">
+		select count(0) from cms_user where username=#{userName}
+	</select>
+	
+	<insert id="reg">
+		insert into cms_user 
+		(username,password,nickname,gender,locked,created,updated)
+		values
+		(#{username},#{password},#{nickname},#{gender.ordinal},#{locked},#{created},#{updated})
+	</insert>
+</mapper>
